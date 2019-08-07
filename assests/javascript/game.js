@@ -1,63 +1,72 @@
-let wins = 0
+let wins = 0;
 
-let losses = 0
+let losses = 0;
 
-let guessesleft = 9
+let score = 0;
 
-const userWins = document.getElementById("user-wins");
+let usercurrentscore = 0;
 
-const userLost = document.getElementById("user-losses");
 
-const userGuessesLeft = document.getElementById("user-guesses-left");
+// here our random crystal vaulues are generated.
 
-const userChoose = document.getElementById("user-choose");
+let randomCrystal1Value = Math.floor(Math.random() * 12) + 1;
 
-let computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+let randomCrystal2Value = Math.floor(Math.random() * 12) + 1;
 
-let guessedLetters = [];
+let randomCrystal3Value = Math.floor(Math.random() * 12) + 1;
 
-//  this is my reset function that should run when guesses left = 0 and should reset the guessed letters...if i could get the guessed letters part working.
+let randomCrystal4Value = Math.floor(Math.random() * 12) + 1;
 
-const reset = function () {
-    guessesleft = 9;
-    guessedLetters = [];
+const crystalValues = [randomCrystal1Value, randomCrystal2Value, randomCrystal3Value, randomCrystal4Value];
+
+// the player is shown a random number at the start of the game
+let randomWinningNumber = Math.floor(Math.random() * 200) + 40;
+
+document.getElementById("number-shown-to-user").innerText = "number to guess " + randomWinningNumber;
+
+//now each crystal must be assigned one of the values
+
+
+
+//here we have each time a button is clicked a function happens.
+
+document.querySelectorAll("button").forEach(function (node) {
+    node.addEventListener("click", function () {
+
+        // here is where when a button is clicked it is assigned a random number from our array of random values
+
+        for (let i = 0; i < crystalValues.length; i++) {
+
+            imageCrystal.setAttribute("data-crystalvalue", crystalValues[i]);
+
+        });
+})
+
+// this is our reset function
+function reset () {
+
+     randomCrystal1Value = Math.floor(Math.random() * 12) + 1;
+
+     randomCrystal2Value = Math.floor(Math.random() * 12) + 1;
+
+     randomCrystal3Value = Math.floor(Math.random() * 12) + 1;
+
+     randomCrystal4Value = Math.floor(Math.random() * 12) + 1;
+
+     score = 0
+
+     usercurrentscore = 0
+
+}
+ // here is our function that runs if we win restarting the game and reseting the random crystal values while increasing our wins counter
+function win() {
+    wins++;
+    reset()
 }
 
+// here is our loss function that runs if we lose restarting the game and reseting the random crystal values while increasing our loss counter
+function loss(){
+    losses++;
+    reset()
+}
 
-
-document.onkeyup = function (event) {
-
-    const userGuess = event.key;
-    //   here the computer grabs a random letter from our computer choices array
-    const computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-    
-
-    guessedLetters.push(userGuess)
-    
-
-    userChoose.textContent = "you choose: " + userGuess;
-
-
-    if (userGuess === computerGuess) {
-
-        wins++;
-
-    }
-
-    else {
-        guessesleft--;
-    }
-
-    if (guessesleft === 0) {
-        losses++;
-        reset();
-
-    }
-
-    userWins.textContent = "wins: " + wins;
-    userLost.textContent = "losses: " + losses;
-    userChoose.textContent = ("you choose: " + guessedLetters);
-    userGuessesLeft.textContent = "guesses left: " + guessesleft;
-
-
-};
