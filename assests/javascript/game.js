@@ -17,6 +17,7 @@ let randomCrystal3Value = Math.floor(Math.random() * 12) + 1;
 
 let randomCrystal4Value = Math.floor(Math.random() * 12) + 1;
 
+
 // those values are then stored in an array 
 const crystalValues = [randomCrystal1Value, randomCrystal2Value, randomCrystal3Value, randomCrystal4Value];
 
@@ -27,10 +28,10 @@ document.getElementById("number-shown-to-user").innerText = "number to guess " +
 
   // here is where buttons are assigned a random number from our array of random values
 
-  let randomCrystalValue1 = crystalValues[Math.floor(Math.random() * crystalValues.length) ] 
-  let randomCrystalValue2 = crystalValues[Math.floor(Math.random() * crystalValues.length) ] 
-  let randomCrystalValue3 = crystalValues[Math.floor(Math.random() * crystalValues.length) ] 
-  let randomCrystalValue4 = crystalValues[Math.floor(Math.random() * crystalValues.length) ] 
+  let randomCrystalValue1 = crystalValues[0] 
+  let randomCrystalValue2 = crystalValues[1] 
+  let randomCrystalValue3 = crystalValues[2] 
+  let randomCrystalValue4 = crystalValues[3] 
             
   const crystal1 = document.getElementById("crystal1")
 
@@ -56,7 +57,10 @@ document.querySelectorAll("button").forEach(function (node) {
     node.addEventListener("click", function () {
 
      userClickedValue = node.getAttribute("data-crystalvalue");
-     document.getElementById("user's-current-score").innerHTML =userClickedValue;
+
+     document.getElementById("user's-current-score").innerHTML = userClickedValue + usercurrentscore;
+
+     
             
         });
     });
