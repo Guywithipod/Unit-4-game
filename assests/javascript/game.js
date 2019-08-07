@@ -26,28 +26,30 @@ let randomWinningNumber = Math.floor(Math.random() * 200) + 40;
 
 document.getElementById("number-shown-to-user").innerText = "number to guess " + randomWinningNumber;
 
-  // here is where buttons are assigned a random number from our array of random values
+// here is where buttons are assigned a random number from our array of random values
 
-  let randomCrystalValue1 = crystalValues[0] 
-  let randomCrystalValue2 = crystalValues[1] 
-  let randomCrystalValue3 = crystalValues[2] 
-  let randomCrystalValue4 = crystalValues[3] 
-            
-  const crystal1 = document.getElementById("crystal1")
+let randomCrystalValue1 = crystalValues[0]
+let randomCrystalValue2 = crystalValues[1]
+let randomCrystalValue3 = crystalValues[2]
+let randomCrystalValue4 = crystalValues[3]
 
-  crystal1.setAttribute("data-crystalvalue", randomCrystalValue1);
+const crystal1 = document.getElementById("crystal1")
 
-  const crystal2 = document.getElementById("crystal2")
+crystal1.setAttribute("data-crystalvalue", randomCrystalValue1);
 
-  crystal2.setAttribute("data-crystalvalue", randomCrystalValue2);
-  
-  const crystal3 = document.getElementById("crystal3")
+const crystal2 = document.getElementById("crystal2")
 
-  crystal3.setAttribute("data-crystalvalue", randomCrystalValue3);
+crystal2.setAttribute("data-crystalvalue", randomCrystalValue2);
 
-  const crystal4 = document.getElementById("crystal4")
+const crystal3 = document.getElementById("crystal3")
 
-  crystal4.setAttribute("data-crystalvalue", randomCrystalValue4);
+crystal3.setAttribute("data-crystalvalue", randomCrystalValue3);
+
+const crystal4 = document.getElementById("crystal4")
+
+crystal4.setAttribute("data-crystalvalue", randomCrystalValue4);
+
+
 
 
 //here each time a button is clicked a function happens.
@@ -56,41 +58,46 @@ document.querySelectorAll("button").forEach(function (node) {
 
     node.addEventListener("click", function () {
 
-     userClickedValue = node.getAttribute("data-crystalvalue");
+        userClickedValue = node.getAttribute("data-crystalvalue");
 
-     document.getElementById("user's-current-score").innerHTML = userClickedValue + usercurrentscore;
+        //here i want it to show the total values of my clicked buttons...
+        randomCrystalValue = parseInt(userClickedValue)
 
-     
-            
-        });
+        usercurrentscore = //here im stuck....
+
+        document.getElementById("user's-current-score").innerHTML = usercurrentscore;
+
+
+
     });
+});
 
 
 // this is our reset function
 const reset = function () {
 
-        randomCrystal1Value = Math.floor(Math.random() * 12) + 1;
+    randomCrystal1Value = Math.floor(Math.random() * 12) + 1;
 
-        randomCrystal2Value = Math.floor(Math.random() * 12) + 1;
+    randomCrystal2Value = Math.floor(Math.random() * 12) + 1;
 
-        randomCrystal3Value = Math.floor(Math.random() * 12) + 1;
+    randomCrystal3Value = Math.floor(Math.random() * 12) + 1;
 
-        randomCrystal4Value = Math.floor(Math.random() * 12) + 1;
+    randomCrystal4Value = Math.floor(Math.random() * 12) + 1;
 
-        score = 0
+    score = 0
 
-        usercurrentscore = 0
+    usercurrentscore = 0
 
-    }
- // here is our function that runs if we win restarting the game and reseting the random crystal values while increasing our wins counter
-const win = function(){
-        wins++;
-        reset()
-    }
+}
+// here is our function that runs if we win restarting the game and reseting the random crystal values while increasing our wins counter
+const win = function () {
+    wins++;
+    reset()
+}
 
 // here is our loss function that runs if we lose restarting the game and reseting the random crystal values while increasing our loss counter
-const loss = function() {
-        losses++;
-        reset()
-    }
+const loss = function () {
+    losses++;
+    reset()
+}
 
